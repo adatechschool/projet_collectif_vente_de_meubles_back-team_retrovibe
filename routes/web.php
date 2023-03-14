@@ -19,9 +19,32 @@ Route::get('/meubles', function () {
     return $meubles;
 });
 
+Route::get('/meubles/{id}', function ($id) {
+    $meuble = DB::table('meubles')->where('id', $id)->first();
+    return $meuble;
+});
+
+// Route::delete('/meubles/{id}', function ($id) {
+//     $meuble = DB::table('meubles')->where('id', $id);
+//     if ($meuble->exists()) {
+//         $meuble->delete();
+//         return response()->json(['message' => 'Meuble supprimé avec succès']);
+//     } else {
+//         return response()->json(['message' => 'Meuble introuvable'], 404);
+//     }
+// });
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::delete('/meubles/1', function () {
+//     DB::table('meubles')->delete();
+//     return response()->json(['message' => 'Le contenu de la table "meubles" a été supprimé.']);
+// });
 
 // Route::get('/meubles1', function () {
 //     $results = DB::select('select * from meubles where id =?', array(1));
