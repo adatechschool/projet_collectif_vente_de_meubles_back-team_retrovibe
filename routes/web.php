@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/meubles1', function () {
-    $results = DB::select('select * from meubles where id =?', array(1));
-    return $results;
-});
+// Route::get('/meubles1', function () {
+//     $results = DB::select('select * from meubles where id =?', array(1));
+//     return $results;
+// });
