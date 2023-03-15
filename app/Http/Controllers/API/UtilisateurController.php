@@ -63,9 +63,9 @@ class UtilisateurController extends Controller
     public function update(Request $request, Utilisateur $utilisateur)
     {
         $this->validate($request, [
-            'nom' => 'required|max:100',
-            'email' => 'required|email|unique:utilisateurs',
-            'mot_de_passe' => 'required|min:8'
+            'nom' => 'max:100',
+            'email' => 'email|unique:utilisateurs',
+            'mot_de_passe' => 'min:8'
         ]);
 
         // On modifie les informations de l'utilisateur
