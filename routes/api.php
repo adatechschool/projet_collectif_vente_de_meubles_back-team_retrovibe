@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-use App\Http\Controllers\API\UserController;
 
 
+use App\Http\Controllers\API\MeubleController;
 
-Route::apiResource("users", UserController::class); // Les routes "users.*" de l'API
+Route::apiResource("meubles", MeubleController::class);
+
+use App\Http\Controllers\API\UtilisateurController;
+
+Route::apiResource("utilisateurs", UtilisateurController::class);
