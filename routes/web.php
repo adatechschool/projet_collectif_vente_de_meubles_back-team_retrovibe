@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/meubles', function () {
-    $meubles =  DB::table('meubles')->get();
-    return $meubles;
-});
+// Route::get('/meubles', function () {
+//     $meubles =  DB::table('meubles')->get();
+//     return $meubles;
+// });
 
-Route::get('/meubles/{id}', function ($id) {
-    $meuble = DB::table('meubles')->where('id', $id)->first();
-    return $meuble;
-});
+// Route::get('/meubles/{id}', function ($id) {
+//     $meuble = DB::table('meubles')->where('id', $id)->first();
+//     return $meuble;
+// });
 
 // Route::delete('/meubles/{id}', function ($id) {
 //     $meuble = DB::table('meubles')->where('id', $id);
