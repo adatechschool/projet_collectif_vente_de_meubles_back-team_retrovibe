@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1deb5ubuntu1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:3306
--- Généré le : mar. 14 mars 2023 à 00:31
--- Version du serveur : 8.0.32-0ubuntu0.22.04.2
--- Version de PHP : 8.1.16
+-- Hôte : 127.0.0.1:3306
+-- Généré le : mer. 15 mars 2023 à 17:00
+-- Version du serveur : 8.0.31
+-- Version de PHP : 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,10 +27,16 @@ SET time_zone = "+00:00";
 -- Structure de la table `commandes`
 --
 
-CREATE TABLE `commandes` (
-  `id` int NOT NULL,
+DROP TABLE IF EXISTS `commandes`;
+CREATE TABLE IF NOT EXISTS `commandes` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `utilisateurs_id` int NOT NULL,
-  `meubles_id` int NOT NULL
+  `meubles_id` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `utilisateurs_id` (`utilisateurs_id`),
+  KEY `meubles_id` (`meubles_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -39,8 +45,9 @@ CREATE TABLE `commandes` (
 -- Structure de la table `meubles`
 --
 
-CREATE TABLE `meubles` (
-  `id` int NOT NULL,
+DROP TABLE IF EXISTS `meubles`;
+CREATE TABLE IF NOT EXISTS `meubles` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `prix` decimal(10,2) DEFAULT NULL,
@@ -56,8 +63,51 @@ CREATE TABLE `meubles` (
   `photo_3` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `photo_4` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `photo_5` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `statut` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `statut` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `meubles`
+--
+
+INSERT INTO `meubles` (`id`, `nom`, `type`, `prix`, `couleur_1`, `couleur_2`, `matiere_1`, `matiere_2`, `longueur`, `largeur`, `hauteur`, `photo_1`, `photo_2`, `photo_3`, `photo_4`, `photo_5`, `statut`, `created_at`, `updated_at`) VALUES
+(1, 'chaise', 'assise', '15.00', 'rouge', 'bleu', 'vert', 'orange', 40, 45, 100, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `batch` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -65,63 +115,28 @@ CREATE TABLE `meubles` (
 -- Structure de la table `utilisateurs`
 --
 
-CREATE TABLE `utilisateurs` (
-  `id` int NOT NULL,
+DROP TABLE IF EXISTS `utilisateurs`;
+CREATE TABLE IF NOT EXISTS `utilisateurs` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `prenom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `mot_de_passe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `telephone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `adresse` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `code postal` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `ville` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `code_postal` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ville` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Index pour les tables déchargées
+-- Déchargement des données de la table `utilisateurs`
 --
 
---
--- Index pour la table `commandes`
---
-ALTER TABLE `commandes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `utilisateurs_id` (`utilisateurs_id`),
-  ADD KEY `meubles_id` (`meubles_id`);
-
---
--- Index pour la table `meubles`
---
-ALTER TABLE `meubles`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `utilisateurs`
---
-ALTER TABLE `utilisateurs`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `commandes`
---
-ALTER TABLE `commandes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `meubles`
---
-ALTER TABLE `meubles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `utilisateurs`
---
-ALTER TABLE `utilisateurs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `email`, `mot_de_passe`, `telephone`, `adresse`, `code_postal`, `ville`, `created_at`, `updated_at`) VALUES
+(2, 'gerard', 'romain', 'gegea@hotmail.com', '$2y$10$9ra1e0nLK68dr6bU5LJ6a.2qwGaqRxVwycCgy4S1Mtg0ZebRhQUTq', NULL, NULL, NULL, NULL, '2023-03-15 15:52:49', '2023-03-15 15:52:49');
 
 --
 -- Contraintes pour les tables déchargées

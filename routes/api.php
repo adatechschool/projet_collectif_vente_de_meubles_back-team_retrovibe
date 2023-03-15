@@ -22,3 +22,7 @@ Route::apiResource("meubles", MeubleController::class);
 use App\Http\Controllers\API\UtilisateurController;
 
 Route::apiResource("utilisateurs", UtilisateurController::class);
+
+use App\Http\Controllers\API\CommandeController;
+
+Route::apiResource("commandes", CommandeController::class);
