@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p alimugn="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 ## Template server API Rest
 
@@ -8,12 +8,28 @@
 
 ### Installation
 
+-   Télecharger repo
+
+-   Lancer MAMP ou WAMP ou LAMP
+
+-   Ouvrir php my admin
+
 -   Créer une nouvelle base de données depuis le fichier anciens_meubles.sql
 
--   Installer composer https://getcomposer.org/
--   Cloner le Repository sur votre machine puis positionnez-vous à la racine du projet.
+MAC :
 
--   Créer un nouveau fichier `.env` en copiant et renommant le fichier `.env.example` puis remplissez le avec les bonnes informations de votre environnement local.
+-   verifier que vous avez bien déjà php d'installé cmd line : php --version
+-   si mac : installer https://brew.sh/ cmd line : /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+-   cmd line : curl -sS https://getcomposer.org/installer | php
+-   cmd line : sudo mv composer.phar /usr/local/bin/composer
+-   pour vérifier l'installation cmd line : composer --version
+    PC :
+-   Installer composer https://getcomposer.org/
+
+-   positionnez-vous à la racine du projet.
+
+-   Modifiez le fichier `.env.exemple` en remplissant avec les bonnes informations de votre environnement local :
+    ( puis renommez le fichier `.env` )
 
 ```bash
 DB_CONNECTION=mysql
@@ -26,9 +42,9 @@ DB_PASSWORD=root               //selon vos réglages
 -   Depuis votre terminal, **toujours à la racine du serveur**, éxécuter les commandes suivantes pour installer les dépendances et lancer le serveur :
 
 ```bash
-composer install
-php artisan key:generate
-php artisan serve
+-   composer install    // si ça affiche "Your lock file does not contain a compatible set of packages. Please run composer update." ->  composer update --ignore-platform-reqs
+-   php artisan key:generate
+-   php artisan serve
 ```
 
 -   Le serveur se lance en local et affiche les informations de connexion dans le terminal
