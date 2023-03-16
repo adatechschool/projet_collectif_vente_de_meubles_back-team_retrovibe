@@ -23,15 +23,13 @@ DB_USERNAME=root               //selon vos réglages
 DB_PASSWORD=root               //selon vos réglages
 ```
 
--   générer votre clé d’encryption
-    `bash
-    php artisan key:generate
-    `
 -   Depuis votre terminal, **toujours à la racine du serveur**, éxécuter les commandes suivantes pour installer les dépendances et lancer le serveur :
-    `bash
-    composer install
-    php artisan serve
-    `
+
+```bash
+composer install
+php artisan key:generate
+php artisan serve
+```
 
 -   Le serveur se lance en local et affiche les informations de connexion dans le terminal
 
