@@ -20,9 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `anciens_meubles`
 --
-CREATE DATABASE `anciens_meubles`;
 
-USE `anciens_meubles`;
 -- --------------------------------------------------------
 
 --
