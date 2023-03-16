@@ -8,21 +8,26 @@ use Illuminate\Support\Facades\Route;
 | API Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
+| C'est ici que l'on enregistre nos routes API pour notre application.
 |
 */
 
+// pour chaque table, j'importe mon controller.
+
+use App\Http\Controllers\API\CommandeController;   
+
+// puis j'utilise la méthode Route::apiRessource() pour faire le lien entre ma table dans ma BDD et mon controller.
+
+Route::apiResource("commandes", CommandeController::class);      // commandes.
+
+// meubles.
 
 use App\Http\Controllers\API\MeubleController;
-
 Route::apiResource("meubles", MeubleController::class);
 
-use App\Http\Controllers\API\UtilisateurController;
+// utilisateurs.
 
+use App\Http\Controllers\API\UtilisateurController;
 Route::apiResource("utilisateurs", UtilisateurController::class);
 
-use App\Http\Controllers\API\CommandeController;
 
-Route::apiResource("commandes", CommandeController::class);

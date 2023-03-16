@@ -1,4 +1,6 @@
 <?php
+/* MA PAGE CONTROLLER POUR MA TABLE UTILISATEUR.*/
+
 
 namespace App\Http\Controllers\API;
 
@@ -8,9 +10,7 @@ use Illuminate\Http\Request;
 
 class UtilisateurController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    /********** GET (globaux) **********/
     public function index()
     {
         // On récupère tous les utilisateurs
@@ -20,22 +20,22 @@ class UtilisateurController extends Controller
         return response()->json($utilisateur);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    /********** POST **********/
     public function store(Request $request)
     {
+        // pour la création, on exige que ces trois infos soient obligatoirement remplies. (nom, email, mdp) 
         $this->validate($request, [
-            'nom' => 'required|max:100',
-            'email' => 'required|email|unique:utilisateurs',
-            'mot_de_passe' => 'required|min:8'
+            'nom' => 'required|max:100',    // 100 caractères maximum.
+            'email' => 'required|email|unique:utilisateurs',       // le mail est unique pour chaque utilisateur.
+            'mot_de_passe' => 'required|min:8'      // 8 caractères minimum pour le mdp.
         ]);
 
-        // On crée un nouvel utilisateur
+        // On crée un nouvel utilisateur.
         $utilisateur = Utilisateur::create([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'email' => $request->email,
+            // le mot de passe est crypté avant son insertion dans la BDD.
             'mot_de_passe' => bcrypt($request->mot_de_passe),
             'telephone' => $request->telephone,
             'adresse' => $request->adresse,
@@ -44,22 +44,18 @@ class UtilisateurController extends Controller
 
         ]);
 
-        // On retourne les informations du nouvel utilisateur en JSON
+        // On retourne les informations du nouvel utilisateur en JSON.
         return response()->json($utilisateur, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
+    /********** GET (by one) **********/
     public function show(Utilisateur $utilisateur)
     {
-        // On retourne les informations de l'utilisateur en JSON
+        // On retourne les informations d'un utilisateur précis en JSON.
         return response()->json($utilisateur);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    /********** PUT **********/
     public function update(Request $request, Utilisateur $utilisateur)
     {
         $this->validate($request, [
@@ -81,19 +77,17 @@ class UtilisateurController extends Controller
 
         ]);
 
-        // On retourne les informations du nouvel utilisateur en JSON
+        // On retourne les informations du nouvel utilisateur en JSON.
         return response()->json($utilisateur);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    /********** DELETE **********/
     public function destroy(Utilisateur $utilisateur)
     {
-        // On supprime l'utilisateur
+        // On supprime l'utilisateur.
         $utilisateur->delete();
 
-        // On retourne la réponse JSON
+        // On retourne la réponse JSON.
         return response()->json();
     }
 }
