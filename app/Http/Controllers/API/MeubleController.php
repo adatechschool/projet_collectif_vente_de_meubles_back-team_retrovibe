@@ -1,4 +1,5 @@
 <?php
+/* MA PAGE CONTROLLER POUR MA TABLE MEUBLE.*/
 
 namespace App\Http\Controllers\API;
 
@@ -8,20 +9,16 @@ use Illuminate\Http\Request;
 
 class MeubleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    /********** GET (globaux) **********/
     public function index()
     {
         $meubles = Meuble::all();
 
-        // On retourne les informations des utilisateurs en JSON
+        // On retourne les informations des meubles en JSON.
         return response()->json($meubles);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    /********** POST **********/
     public function store(Request $request)
     {
         // On crée un nouveau meuble
@@ -44,25 +41,22 @@ class MeubleController extends Controller
             'statut' => $request->statut
         ]);
 
-        // On retourne les informations du nouvel utilisateur en JSON
+        // On retourne les informations du nouveau meuble en JSON.
         return response()->json($meuble, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
+    /********** GET (by one) **********/
     public function show(Meuble $meuble)
     {
+        // On retourne les informations d'un meuble précis.
         return response()->json($meuble);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    /********** PUT **********/
     public function update(Request $request, Meuble $meuble)
     {
 
-        // On modifie les informations de l'utilisateur
+        // On modifie les informations du meuble.
         $meuble->update([
 
             'type' => $request->type,
@@ -82,16 +76,16 @@ class MeubleController extends Controller
             'statut' => $request->statut
         ]);
 
-        // On retourne la réponse JSON
+        // On retourne la réponse JSON.
         return response()->json($meuble);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    /********** DELETE **********/
     public function destroy(Meuble $meuble)
     {
+        // On supprime le meuble.
         $meuble->delete();
+        // On retourne la réponse JSON.
         return response()->json();
     }
 }
