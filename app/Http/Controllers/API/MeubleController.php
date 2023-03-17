@@ -60,22 +60,22 @@ class MeubleController extends Controller
         // On modifie les informations du meuble.
         $meuble->update([
 
-            'type' => $request->type,
-            'annee' => $request->annee,
-            'prix' => $request->prix,
-            'couleur_1' => $request->couleur_1,
-            'couleur_2' => $request->couleur_2,
-            'matiere_1' => $request->matiere_1,
-            'matiere_2' => $request->matiere_2,
-            'longueur' => $request->longueur,
-            'largeur' => $request->largeur,
-            'hauteur' => $request->hauteur,
-            'photo_1' => $request->photo_1,
-            'photo_2' => $request->photo_2,
-            'photo_3' => $request->photo_3,
-            'photo_4' => $request->photo_4,
-            'photo_5' => $request->photo_5,
-            'statut' => $request->statut
+            'type' => $request->type ?? $meuble->type,
+            'annee' => $request->annee ?? $meuble->annee,
+            'prix' => $request->prix ?? $meuble->prix,
+            'couleur_1' => $request->couleur_1 ?? $meuble->couleur_1,
+            'couleur_2' => $request->couleur_2 ?? $meuble->couleur_2,
+            'matiere_1' => $request->matiere_1 ?? $meuble->matiere_1,
+            'matiere_2' => $request->matiere_2 ?? $meuble->matiere_2,
+            'longueur' => $request->longueur ?? $meuble->longueur,
+            'largeur' => $request->largeur ?? $meuble->largeur,
+            'hauteur' => $request->hauteur ?? $meuble->hauteur,
+            'photo_1' => $request->photo_1 ?? $meuble->photo_1,
+            'photo_2' => $request->photo_2 ?? $meuble->photo_2,
+            'photo_3' => $request->photo_3 ?? $meuble->photo_3,
+            'photo_4' => $request->photo_4 ?? $meuble->photo_4,
+            'photo_5' => $request->photo_5 ?? $meuble->photo_5,
+            'statut' => $request->statut ?? $meuble->statut,
         ]);
 
         // On retourne la réponse JSON.
