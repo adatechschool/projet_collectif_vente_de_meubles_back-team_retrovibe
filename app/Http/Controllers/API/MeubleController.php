@@ -24,6 +24,7 @@ class MeubleController extends Controller
         // On crée un nouveau meuble
         $meuble = Meuble::create([
             'nom' => $request->nom,
+            'année' => $request->année,
             'type' => $request->type,
             'prix' => $request->prix,
             'couleur_1' => $request->couleur_1,
@@ -60,6 +61,7 @@ class MeubleController extends Controller
         $meuble->update([
 
             'type' => $request->type,
+            'année' => $request->année,
             'prix' => $request->prix,
             'couleur_1' => $request->couleur_1,
             'couleur_2' => $request->couleur_2,
