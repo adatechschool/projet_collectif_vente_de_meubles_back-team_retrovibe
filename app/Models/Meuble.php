@@ -13,6 +13,7 @@ class Meuble extends Model
     use HasFactory;
     protected $fillable = [
         'nom',
+        'année',
         'type',
         'prix',
         'couleur_1',
