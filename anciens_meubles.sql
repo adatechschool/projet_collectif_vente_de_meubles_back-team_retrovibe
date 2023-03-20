@@ -52,6 +52,7 @@ INSERT INTO `commandes` (`id`, `utilisateurs_id`, `meubles_id`, `created_at`, `u
 CREATE TABLE `meubles` (
   `id` int NOT NULL,
   `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `annee` int(4) DEFAULT NULL,
   `type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `prix` decimal(10,2) DEFAULT NULL,
   `couleur_1` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,

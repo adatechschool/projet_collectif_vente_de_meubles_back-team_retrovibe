@@ -1,5 +1,5 @@
 <?php
-/* VOICI NOTRE PREMIERE PAGE CONTROLLER, ici pour ma table Commande.
+/* VOICI NOTRE PREMIERE PAGE CONTROLLER, ici pour ma table panier.
 Elle va nous permettre de traiter les requêtes HTTP GET (globaux) / POST / GET(by one) / PUT / DELETE et 
 retourner une réponse appropriée à l'utilisateur.*/
 
@@ -13,10 +13,10 @@ qui est fournie par Laravel et contient plusieurs fonctionnalités utiles.*/
 
 use App\Http\Controllers\Controller;
 
-/* Ici, j'importe la classe "Commande" à partir de "App\Models\Commande". 
-Cette classe représente le modèle Commande que nous avons créé dans app\Models.*/
+/* Ici, j'importe la classe "panier" à partir de "App\Models\panier". 
+Cette classe représente le modèle panier que nous avons créé dans app\Models.*/
 
-use App\Models\Commande;
+use App\Models\panier;
 
 /* Ici, j'importe la classe "Request" à partir du namespace "Illuminate\Http". 
 La classe Request est une classe Laravel qui représente une demande HTTP entrante, 
@@ -26,17 +26,17 @@ pour accéder aux informations sur la demande elle-même (comme l'URL, les en-t�
 
 use Illuminate\Http\Request;
 
-/* Ici, je définis une classe de contrôleur nommée "CommandeController" qui étend la classe "Controller". 
+/* Ici, je définis une classe de contrôleur nommée "panierController" qui étend la classe "Controller". 
 Cette classe de contrôleur est une classe Laravel qui contient des méthodes qui sont appelées pour gérer les 
 demandes HTTP entrantes. Les méthodes de la classe de contrôleur sont généralement appelées par les routes de 
 l'application, qui redirigent les demandes HTTP vers la méthode appropriée en fonction de l'URL de la demande 
 et de la méthode HTTP utilisée. La classe de contrôleur est utilisée pour regrouper la logique de gestion 
 de plusieurs actions dans un seul endroit.*/
 
-class CommandeController extends Controller
+class panierController extends Controller
 {
     /* Ici, je définis une fonction index pour traiter les GET globaux et qui va me renvoyer toutes les 
-    commandes stockées dans la base de données sous forme de réponse JSON. Le mot-clé "public" signifie que cette 
+    paniers stockées dans la base de données sous forme de réponse JSON. Le mot-clé "public" signifie que cette 
     méthode peut être appelée à partir de n'importe où dans mon application.
      */
      
@@ -44,13 +44,13 @@ class CommandeController extends Controller
 
     public function index()
     {
-        /* Je récupère toutes les commandes stockées dans la base de données à l'aide de la méthode statique "all()".
-        Je stocke ces données dans ma variable $commande.*/
+        /* Je récupère toutes les paniers stockées dans la base de données à l'aide de la méthode statique "all()".
+        Je stocke ces données dans ma variable $panier.*/
 
-        $commande = Commande::all();
+        $panier = Panier::all();
 
         // Je retourne les informations en JSON.
-        return response()->json($commande);
+        return response()->json($panier);
     }
 
     /********** FONCTION pour traiter les POST.**********/
@@ -59,48 +59,48 @@ class CommandeController extends Controller
     public function store(Request $request)     
     {
         // on utilise la méthode native create de Laravel pour insérer les données dans la BDD.
-        $commande = Commande::create([
-            'utilisateurs_id' => $request->utilisateurs_id,
-            'meubles_id' => $request->meubles_id
+        $panier = Panier::create([
+            'id_utilisateur' => $request->id_utilisateur,
+            'id_meuble' => $request->id_meuble
         ]);
 
-        return response()->json($commande, 201);
+        return response()->json($panier, 201);
     }
 
     /********** FONCTION pour traiter les GET (by one).**********/
 
-    public function show(Commande $commande)
+    public function show(Panier $panier)
     {
-        return response()->json($commande);
+        return response()->json($panier);
     }
 
     /********** FONCTION pour traiter les PUT.**********/
 
     // L'objet "Request" passé 1er en paramètre contient les données envoyées dans la requête HTTP.
-    // L'objet "Commande" passé en 2e paramètre représente la commande que nous souhaitons mettre à jour.
-    public function update(Request $request, Commande $commande)
+    // L'objet "panier" passé en 2e paramètre représente la panier que nous souhaitons mettre à jour.
+    public function update(Request $request, Panier $panier)
     {
 
         // On utilise la méthode native "update" de Laravel qui sert à mettre à jour les éléments dans la BDD.
-        $commande->update([
+        $panier->update([
             
-            /* On met à jour les champs "utilisateurs_id" et "meubles_id" de la table "Commande" 
+            /* On met à jour les champs "id_utilisateur" et "id_meuble" de la table "panier" 
             avec les valeurs contenues dans l'objet "Request".*/
-            'utilisateurs_id' => $request->utilisateurs_id ?? $commande->utilisateurs_id,
-            'meubles_id' => $request->meubles_id ?? $commande->meubles_id
+            'id_utilisateur' => $request->id_utilisateur ?? $panier->id_utilisateur,
+            'id_meuble' => $request->id_meuble ?? $panier->id_meuble
         ]);
 
-        return response()->json($commande);
+        return response()->json($panier);
     }
     
 
     /********** FONCTION pour traiter les DELETE.**********/
 
-    // L'objet "Commande" passé en paramètre représente la commande que nous souhaitons supprimer de la BDD.
-    public function destroy(Commande $commande)
+    // L'objet "panier" passé en paramètre représente la panier que nous souhaitons supprimer de la BDD.
+    public function destroy(Panier $panier)
     {
         // On utilise La méthode native "delete" de Laravel qui sert à supprimer un élément de la BDD.
-        $commande->delete();
+        $panier->delete();
 
         return response()->json();
     }
