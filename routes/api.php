@@ -30,4 +30,7 @@ Route::apiResource("meubles", MeubleController::class);
 use App\Http\Controllers\API\UtilisateurController;
 Route::apiResource("utilisateurs", UtilisateurController::class);
 
+// paniers.
 
+use App\Http\Controllers\API\PanierController;
+Route::apiResource("paniers", PanierController::class);
