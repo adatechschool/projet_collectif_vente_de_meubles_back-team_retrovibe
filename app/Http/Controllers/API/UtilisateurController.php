@@ -66,15 +66,14 @@ class UtilisateurController extends Controller
 
         // On modifie les informations de l'utilisateur
         $utilisateur->update([
-            'nom' => $request->nom,
-            'prenom' => $request->prenom,
-            'email' => $request->email,
+            'nom' => $request->nom ?? $utilisateur->nom,
+            'prenom' => $request->prenom ?? $utilisateur->prenom,
+            'email' => $request->email ?? $utilisateur->email,
             'mot_de_passe' => bcrypt($request->mot_de_passe),
-            'telephone' => $request->telephone,
-            'adresse' => $request->adresse,
-            'code_postal' => $request->code_postal,
-            'ville' => $request->ville
-
+            'telephone' => $request->telephone ?? $utilisateur->telephone,
+            'adresse' => $request->adresse ?? $utilisateur->adresse,
+            'code_postal' => $request->code_postal ?? $utilisateur->code_postal,
+            'ville' => $request->ville ?? $utilisateur->ville
         ]);
 
         // On retourne les informations du nouvel utilisateur en JSON.

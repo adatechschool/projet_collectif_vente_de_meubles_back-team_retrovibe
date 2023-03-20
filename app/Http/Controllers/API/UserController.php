@@ -63,7 +63,7 @@ class UserController extends Controller
 
         // On modifie les informations de l'utilisateur
         $user->update([
-            "name" => $request->name,
+            "name" => $request->name ?? $request->name,
             "email" => $request->email,
             "password" => bcrypt($request->password)
         ]);
