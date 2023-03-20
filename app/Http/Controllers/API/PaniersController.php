@@ -16,7 +16,7 @@ use App\Http\Controllers\Controller;
 /* Ici, j'importe la classe "panier" à partir de "App\Models\panier". 
 Cette classe représente le modèle panier que nous avons créé dans app\Models.*/
 
-use App\Models\panier;
+use App\Models\Panier;
 
 /* Ici, j'importe la classe "Request" à partir du namespace "Illuminate\Http". 
 La classe Request est une classe Laravel qui représente une demande HTTP entrante, 
