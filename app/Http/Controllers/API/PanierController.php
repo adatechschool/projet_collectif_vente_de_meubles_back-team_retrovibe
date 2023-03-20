@@ -33,7 +33,7 @@ l'application, qui redirigent les demandes HTTP vers la méthode appropriée en 
 et de la méthode HTTP utilisée. La classe de contrôleur est utilisée pour regrouper la logique de gestion 
 de plusieurs actions dans un seul endroit.*/
 
-class panierController extends Controller
+class PanierController extends Controller
 {
     /* Ici, je définis une fonction index pour traiter les GET globaux et qui va me renvoyer toutes les 
     paniers stockées dans la base de données sous forme de réponse JSON. Le mot-clé "public" signifie que cette 
