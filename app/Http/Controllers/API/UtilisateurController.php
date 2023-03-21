@@ -17,7 +17,7 @@ class UtilisateurController extends Controller
         $utilisateur = Utilisateur::all();
 
         // On retourne les informations des utilisateurs en JSON
-        return response()->json($utilisateur);
+        return response()->json($utilisateur)->header('Access-Control-Allow-Origin', '*');
     }
 
     /********** POST **********/
@@ -52,7 +52,7 @@ class UtilisateurController extends Controller
     public function show(Utilisateur $utilisateur)
     {
         // On retourne les informations d'un utilisateur précis en JSON.
-        return response()->json($utilisateur);
+        return response()->json($utilisateur)->header('Access-Control-Allow-Origin', '*');
     }
 
     /********** PUT **********/
@@ -77,7 +77,7 @@ class UtilisateurController extends Controller
         ]);
 
         // On retourne les informations du nouvel utilisateur en JSON.
-        return response()->json($utilisateur);
+        return response()->json($utilisateur)->header('Access-Control-Allow-Origin', '*');
     }
 
     /********** DELETE **********/
@@ -87,6 +87,6 @@ class UtilisateurController extends Controller
         $utilisateur->delete();
 
         // On retourne la réponse JSON.
-        return response()->json();
+        return response()->json()->header('Access-Control-Allow-Origin', '*');
     }
 }
