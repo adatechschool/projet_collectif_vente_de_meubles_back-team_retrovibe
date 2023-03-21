@@ -30,13 +30,16 @@ class UtilisateurController extends Controller
             'mot_de_passe' => 'required|min:8'      // 8 caractères minimum pour le mdp.
         ]);
 
+        $salt = "testtkt";
+        $hash = crypt('mot_de_passe', $salt);
+
         // On crée un nouvel utilisateur.
         $utilisateur = Utilisateur::create([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'email' => $request->email,
             // le mot de passe est crypté avant son insertion dans la BDD.
-            'mot_de_passe' => bcrypt($request->mot_de_passe),
+            'mot_de_passe' => ($request->$hash),
             'telephone' => $request->telephone,
             'adresse' => $request->adresse,
             'code_postal' => $request->code_postal,
