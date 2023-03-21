@@ -30,16 +30,13 @@ class UtilisateurController extends Controller
             'mot_de_passe' => 'required|min:8'      // 8 caractères minimum pour le mdp.
         ]);
 
-        $salt = "testtkt";
-        $hash = crypt('mot_de_passe', $salt);
-
         // On crée un nouvel utilisateur.
         $utilisateur = Utilisateur::create([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'email' => $request->email,
             // le mot de passe est crypté avant son insertion dans la BDD.
-            'mot_de_passe' => ($request->$hash),
+            'mot_de_passe' => bcrypt($request->mot_de_passe),
             'telephone' => $request->telephone,
             'adresse' => $request->adresse,
             'code_postal' => $request->code_postal,
@@ -48,7 +45,7 @@ class UtilisateurController extends Controller
         ]);
 
         // On retourne les informations du nouvel utilisateur en JSON.
-        return response()->json($utilisateur, 201);
+        return response()->json($utilisateur, 201)->header('Access-Control-Allow-Origin', '*');
     }
 
     /********** GET (by one) **********/
