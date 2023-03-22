@@ -88,5 +88,5 @@ class UtilisateurController extends Controller
 
         // On retourne la réponse JSON.
         return response()->json()->header('Access-Control-Allow-Origin', '*');
-    }
+    }    
 }
