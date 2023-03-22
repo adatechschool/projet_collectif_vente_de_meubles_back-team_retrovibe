@@ -36,7 +36,7 @@ class UtilisateurController extends Controller
             'prenom' => $request->prenom,
             'email' => $request->email,
             // le mot de passe est crypté avant son insertion dans la BDD.
-            'mot_de_passe' => bcrypt($request->mot_de_passe),
+            'mot_de_passe' => $request->mot_de_passe, // ajouter bcrypt() pour crypyer le mdp cf UserController
             'telephone' => $request->telephone,
             'adresse' => $request->adresse,
             'code_postal' => $request->code_postal,
@@ -69,7 +69,7 @@ class UtilisateurController extends Controller
             'nom' => $request->nom ?? $utilisateur->nom,
             'prenom' => $request->prenom ?? $utilisateur->prenom,
             'email' => $request->email ?? $utilisateur->email,
-            'mot_de_passe' => bcrypt($request->mot_de_passe),
+            'mot_de_passe' => $request->mot_de_passe,
             'telephone' => $request->telephone ?? $utilisateur->telephone,
             'adresse' => $request->adresse ?? $utilisateur->adresse,
             'code_postal' => $request->code_postal ?? $utilisateur->code_postal,
