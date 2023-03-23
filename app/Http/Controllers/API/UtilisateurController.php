@@ -7,6 +7,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class UtilisateurController extends Controller
 {
@@ -49,9 +51,17 @@ class UtilisateurController extends Controller
     }
 
     /********** GET (by one) **********/
-    public function show(Utilisateur $utilisateur)
+    public function show(Utilisateur $utilisateur, Request $request)
     {
-        // On retourne les informations d'un utilisateur précis en JSON.
+        // On vérifie si le mot de passe entré correspond à celui stocké dans la base de données.
+        if ($request->email !== $utilisateur->email) {
+            return response()->json(['message' => 'Le mail est incorrect.'], 401);
+            // On vérifie si le mot de passe entré correspond à celui stocké dans la base de données.
+        } else if (!Hash::check($request->mot_de_passe, $utilisateur->mot_de_passe)) {
+            return response()->json(['message' => 'Le mot de passe est incorrect.'], 401);
+        }
+
+        // On retourne les informations de l'utilisateur en JSON.
         return response()->json($utilisateur)->header('Access-Control-Allow-Origin', '*');
     }
 
@@ -88,5 +98,5 @@ class UtilisateurController extends Controller
 
         // On retourne la réponse JSON.
         return response()->json()->header('Access-Control-Allow-Origin', '*');
-    }    
+    }
 }
