@@ -1,6 +1,6 @@
 # [RETROVIBE](https://retrovibes.herokuapp.com/home)
 
-Ceci est le repo de notre Back, le Front se trouve [ici](https://github.com/adatechschool/projet_collectif_vente_de_meubles_front-team_retrovibe)
+Ceci est le repo de notre Back, le Front se trouve [ici](https://github.com/adatechschool/projet_collectif_vente_de_meubles-front-team_retrovibe)
 
 ## Template server API Rest
 
